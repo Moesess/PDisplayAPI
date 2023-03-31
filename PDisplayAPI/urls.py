@@ -27,5 +27,6 @@ router.register(r'PriceDisplay', views.PriceDisplayListView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('db/', views.get_products, name="data")
 ]
