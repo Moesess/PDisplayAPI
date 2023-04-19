@@ -19,48 +19,43 @@ class PriceDisplayListView(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 
 def get_products(request):
-    Product.objects.update_or_create(
-        id=1,
+    Product.objects.create(
         name='Banana',
         price='1.23',
-        last_modified=datetime.datetime.now()
     )
 
-    Product.objects.update_or_create(
-        id=2,
+    Product.objects.create(
         name='Orange',
         price='2.34',
-        last_modified=datetime.datetime.now()
     )
 
-    Product.objects.update_or_create(
-        id=3,
+    Product.objects.create(
         name='Corn',
         price='3.45',
-        last_modified=datetime.datetime.now()
     )
 
-    Product.objects.update_or_create(
-        id=4,
+    Product.objects.create(
         name='Milk',
         price='4.56',
-        last_modified=datetime.datetime.now()
     )
 
-    PriceDisplay.objects.update_or_create(
-        id=1,
-        ip_address='127.0.0.2'
-    )
-
-    PriceDisplay.objects.update_or_create(
-        id=2,
-        ip_address='127.0.0.3'
-    )
-
-    PriceDisplay.objects.update_or_create(
-        id=3,
-        ip_address='127.0.0.4'
-    )
+    # PriceDisplay.objects.update_or_create(
+    #     id=1,
+    #     ip_address='127.0.0.2'
+    # )
+    #
+    # PriceDisplay.objects.update_or_create(
+    #     id=2,
+    #     ip_address='127.0.0.3'
+    # )
+    #
+    # PriceDisplay.objects.update_or_create(
+    #     id=3,
+    #     ip_address='127.0.0.4'
+    # )
 
     return HttpResponse("Objects created")
 
+
+def get_latest_product(request):
+    return HttpResponse(Product.objects.filter(name__contains="milk").latest().last_modified)
