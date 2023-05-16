@@ -16,6 +16,8 @@ class ProductChangeSerializer(serializers.ModelSerializer):
 
 
 class PriceDisplaySerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+
     class Meta:
         model = PriceDisplay
         fields = '__all__'
