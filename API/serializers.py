@@ -16,7 +16,7 @@ class ProductChangeSerializer(serializers.ModelSerializer):
 
 
 class PriceDisplaySerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
+    qr_code_img = serializers.ImageField(use_url=True, read_only=True)
 
     class Meta:
         model = PriceDisplay
