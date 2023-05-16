@@ -27,3 +27,17 @@ W celu uruchomienia serwera z API wpisujemy
 ```shell
 python manage.py runserver opcjonalne_ip
 ```
+
+## Dodatkowe info
+Jeżeli chcecie korzystać z panelu admina, będzie dostępny pod adresem
+```shell
+http://127.0.0.1:8000/admin
+```
+Zakładając że macie odpaloną apkę na localhoscie.
+
+ALE, trzeba najpierw utworzyć użytkownika administratora. W środowisku wirtualnym wpisujemy:
+```shell
+python manage.py createsuperuser
+```
+I przechodzimy przez proces, powinien zapytać o login, email - może być pusty, hasło i powtórkę hasła. 
+Jeśli dacie za proste będzie krzyczeć że niezgodne z regułami, ale można to skipnąć wciskając "y".
