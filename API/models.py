@@ -33,6 +33,9 @@ class ProductChange(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"CHANGED_{self.name}"
+
 
 @receiver(post_save, sender=Product)  # after Product object is saved, create ProductChange object
 def create_product_change(sender, instance, created, **kwargs):
@@ -51,6 +54,9 @@ class PriceDisplay(models.Model):
     qr_code_img = models.ImageField(editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"DISPLAY_{self.uid}"
 
 
 @receiver(pre_save, sender=PriceDisplay)  # create qr_code as url with uid of PriceDisplay before object is saved
