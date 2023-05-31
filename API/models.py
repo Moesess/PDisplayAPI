@@ -3,7 +3,6 @@ import uuid
 import qrcode
 
 from django.core.files import File
-from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
@@ -47,7 +46,7 @@ def create_product_change(sender, instance, created, **kwargs):
 
 class PriceDisplay(models.Model):
     uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
     qr_code = models.CharField(max_length=500, editable=False)
     qr_code_img = models.ImageField(editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
