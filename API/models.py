@@ -46,7 +46,7 @@ def create_product_change(sender, instance, created, **kwargs):
 
 class PriceDisplay(models.Model):
     uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     qr_code = models.CharField(max_length=500, editable=False)
     qr_code_img = models.ImageField(editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
