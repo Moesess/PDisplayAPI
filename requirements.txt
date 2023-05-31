@@ -7,3 +7,4 @@ sqlparse==0.4.3
 tzdata==2023.3
 qrcode
 Pillow
+django-cors-headers
