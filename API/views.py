@@ -1,6 +1,6 @@
 from django.urls import reverse
 from rest_framework.decorators import action
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
 from .models import Product, PriceDisplay, ProductChange
@@ -33,6 +33,7 @@ class PriceDisplayListView(viewsets.ModelViewSet):
         return Response(response_data)
 
 
-class ProductChangeView(viewsets.ModelViewSet):
+class ProductChangeView(generics.ListAPIView, viewsets.ModelViewSet):
     queryset = ProductChange.objects.all()
     serializer_class = ProductChangeSerializer
+    filterset_fields = ['product']
