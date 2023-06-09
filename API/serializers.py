@@ -17,8 +17,13 @@ class ProductChangeSerializer(serializers.ModelSerializer):
 
 class PriceDisplaySerializer(serializers.ModelSerializer):
     qr_code_img = serializers.ImageField(use_url=True, read_only=True)
-    product = ProductSerializer()
+    # product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    product_details = serializers.SerializerMethodField()
 
     class Meta:
         model = PriceDisplay
-        fields = '__all__'
+        fields = ('uid', 'qr_code_img', 'product_details', 'qr_code', 'created_at', 'modified_at')
+
+    def get_product_details(self, obj):
+        serializer = ProductSerializer(obj.product)
+        return serializer.data
